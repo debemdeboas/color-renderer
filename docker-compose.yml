@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  colortester:
+    image: colortester
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 15000:15000

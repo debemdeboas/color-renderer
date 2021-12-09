@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block body %}
+{{ super() }}
+<div class="container">
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endfor %}
+
+    <h1>Welcome to a simple color renderer/tester</h1>
+    <p class="lead">
+        Please input your desired color's hexadecimal code and click render.
+        This tool was built to test monitors.
+        Also useful for a "budget" colored lighting option.
+    </p>
+
+    <h2>Example colors</h2>
+    <p class="lead">Here are some sample colors for you to try out.</p>
+    <table class="table">
+        <thead>
+            <tr><th>Color</th><th>Hex code</th><th>Sample</th></tr>
+        </thead>
+        <tbody>
+            {% for _color_name, _hex_code in dict_colors.items() %}
+            <tr>
+                <td>{{ _color_name.title() }}</td>
+                <td>{{ _hex_code.upper() }}</td>
+                <td>
+                    <svg width="20" height="20">
+                        <rect width="20" height="20" style="fill:{{ _hex_code.upper() }};stroke-width:3;stroke:rgb(0,0,0)"/>
+                    </svg>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="form">
+        {{ wtf.quick_form(color_form) }}
+    </div>
+</div>
+{% endblock %}
