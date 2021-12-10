@@ -16,7 +16,7 @@
     </p>
 
     <h2>Example colors</h2>
-    <p class="lead">Here are some sample colors for you to try out. Some common color codes can be found <a href="https://htmlcolorcodes.com/colors/">here</a>.</p>
+    <p class="lead">Here are some sample colors for you to try out. Click on the rectangles! Some more common color codes can be found <a href="https://htmlcolorcodes.com/colors/">here</a>.</p>
     <table class="table">
         <thead>
             <tr><th>Color</th><th>Hex code</th><th>Sample</th></tr>
@@ -27,9 +27,9 @@
                 <td>{{ _color_name.title() }}</td>
                 <td>{{ _hex_code.upper() }}</td>
                 <td>
-                    <svg width="20" height="20">
+                    <a href="{{ url_for('render_color', id=_hex_code)}}"><svg width="20" height="20">
                         <rect width="20" height="20" style="fill:{{ _hex_code.upper() }};stroke-width:3;stroke:rgb(0,0,0)"/>
-                    </svg>
+                    </svg></a>
                 </td>
             </tr>
             {% endfor %}
