@@ -18,7 +18,7 @@ DICT_EXAMPLE_COLORS = {
 
 class ColorForm(FlaskForm):
     color = StringField('Desired color hex code',
-                        description='Please use the following format: #{hex code}',
+                        description='Please use the following format: #{hex code}. The \'#\' can be omitted.',
                         validators=[DataRequired()])
     submit_btn = SubmitField('Render!')
 
@@ -37,17 +37,20 @@ def homepage():
 @app.route('/color/<id>')
 def render_color(id):
     if not isinstance(id, str):
-        flash('Not a String input! (How?)')
+        flash('Not a valid input type! (How?)')
         return redirect('/')
 
     id = id.upper()
+    if not id.startswith('#'):
+        id = f'#{id}'
+
     if not COLOR_VALIDATION_REGEX.fullmatch(id):
         flash('Invalid hex color format. Please try again.')
         return redirect('/')
 
-    return render_template('color.html', J2_COLOR=id)
+    return render_template('color.html', title=f'Color {id}', J2_COLOR=id)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=True)
 
