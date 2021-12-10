@@ -14,6 +14,11 @@ DICT_EXAMPLE_COLORS = {
     'red': '#FF0000',
     'green': '#00FF00',
     'blue': '#0000FF',
+    'Neon Pink': '#FF10F0',
+    'Pastel Pink': '#F8C8DC',
+    'Iris': '#5D3FD3',
+    'Bright Red': '#EE4B2B',
+    'Chartreuse': '#DFFF00',
 }
 
 class ColorForm(FlaskForm):
